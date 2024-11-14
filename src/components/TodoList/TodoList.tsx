@@ -62,6 +62,7 @@ export const TodoList: React.FC<Props> = ({
                   data-cy="selectButton"
                   className="button"
                   type="button"
+                  aria-label="select todo"
                   onClick={() => {
                     setTargetTodo(todo);
                   }}

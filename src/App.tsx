@@ -60,18 +60,22 @@ export const App: React.FC = () => {
           _users.find((_user: User) => _user.id === targetTodo?.userId) || null
         );
       })
-      .then(_user =>
-        fetch(
-          `https://mate-academy.github.io/react_dynamic-list-of-todos/api/users/${_user.id}.json`,
-        )
-          .then(_u => _u.json())
-          .then(_u => setName(_u.name)),
-      )
+      .then(_user => {
+        if (_user) {
+          return fetch(
+            `https://mate-academy.github.io/react_dynamic-list-of-todos/api/users/${_user.id}.json`,
+          )
+            .then(_u => _u.json())
+            .then(_u => setName(_u.name));
+        }
+
+        throw new Error(`can't find a user`);
+      })
       .catch(() => {});
   }, [targetTodo]);
 
   useEffect(() => {
-    setInterval(() => {
+    setTimeout(() => {
       setIsLoading(false);
     }, 300);
   }, []);

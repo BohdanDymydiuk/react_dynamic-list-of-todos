@@ -20,7 +20,7 @@ export const TodoModal: React.FC<Props> = ({
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    setInterval(() => {
+    setTimeout(() => {
       setIsLoading(false);
     }, 300);
   }, []);
